@@ -4,13 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Endless Pocong</title>
-<<<<<<< HEAD
-
     <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.js"></script>
-
-=======
-    <script src="https://cdn.jsdelivr.net/npm/phaser@3/dist/phaser.js"></script>
->>>>>>> 8e207cb659b08ae6c5b8c85ec638e603040291b6
     <style>
         body {
             margin: 0;
@@ -21,18 +15,8 @@
             align-items: center;
             height: 100vh;
         }
-<<<<<<< HEAD
-
-        canvas {
-            display: block;
-        }
     </style>
 </head>
-
-=======
-    </style>
-</head>
->>>>>>> 8e207cb659b08ae6c5b8c85ec638e603040291b6
 <body>
 
 <script>
@@ -42,10 +26,7 @@ class SceneMenu extends Phaser.Scene {
     }
 
     preload() {
-<<<<<<< HEAD
-=======
         // LOAD IMAGES
->>>>>>> 8e207cb659b08ae6c5b8c85ec638e603040291b6
         this.load.image('bg_start', 'images/bg_start.png');
         this.load.image('btn_play', 'images/btn_play.png');
         this.load.image('title_game', 'images/title_game.png');
@@ -55,35 +36,21 @@ class SceneMenu extends Phaser.Scene {
         this.load.image('chara', 'images/chara.png');
         this.load.image('obstc', 'images/obstc.png');
 
-<<<<<<< HEAD
-=======
         // LOAD AUDIO
->>>>>>> 8e207cb659b08ae6c5b8c85ec638e603040291b6
         this.load.audio('klik', 'audio/klik_1.mp3');
         this.load.audio('dead', 'audio/dead.mp3');
     }
 
     create() {
-<<<<<<< HEAD
-        // background debug dihapus biar tidak ganggu tampilan
-=======
         // Kotak hijau di bawah background utama
         this.add.rectangle(512, 384, 200, 200, 0x00ff00)
             .setAlpha(1)
             .setDepth(0);
->>>>>>> 8e207cb659b08ae6c5b8c85ec638e603040291b6
 
         this.add.image(512, 384, 'bg_start').setDepth(1);
         this.add.image(512, 170, 'title_game').setDepth(2);
 
-<<<<<<< HEAD
-        let playBtn = this.add.image(512, 500, 'btn_play')
-            .setInteractive()
-            .setDepth(2);
-
-=======
         let playBtn = this.add.image(512, 500, 'btn_play').setInteractive().setDepth(2);
->>>>>>> 8e207cb659b08ae6c5b8c85ec638e603040291b6
         playBtn.setScale(0.8);
 
         playBtn.on('pointerdown', () => {
@@ -100,12 +67,6 @@ class ScenePlay extends Phaser.Scene {
 
     removeWhiteBackground(sourceKey, targetKey, threshold = 240) {
         const sourceTexture = this.textures.get(sourceKey);
-<<<<<<< HEAD
-        if (!sourceTexture) return;
-
-        const sourceImage = sourceTexture.getSourceImage();
-        if (!sourceImage) return;
-=======
         if (!sourceTexture) {
             return;
         }
@@ -114,7 +75,6 @@ class ScenePlay extends Phaser.Scene {
         if (!sourceImage) {
             return;
         }
->>>>>>> 8e207cb659b08ae6c5b8c85ec638e603040291b6
 
         if (this.textures.exists(targetKey)) {
             this.textures.remove(targetKey);
@@ -122,33 +82,19 @@ class ScenePlay extends Phaser.Scene {
 
         const width = sourceImage.width;
         const height = sourceImage.height;
-<<<<<<< HEAD
-
-=======
->>>>>>> 8e207cb659b08ae6c5b8c85ec638e603040291b6
         const canvasTexture = this.textures.createCanvas(targetKey, width, height);
         canvasTexture.draw(0, 0, sourceImage);
 
         const ctx = canvasTexture.getContext ? canvasTexture.getContext() : canvasTexture.context;
-<<<<<<< HEAD
-        if (!ctx) return;
-=======
         if (!ctx) {
             return;
         }
->>>>>>> 8e207cb659b08ae6c5b8c85ec638e603040291b6
 
         const imageData = ctx.getImageData(0, 0, width, height);
         const pixels = imageData.data;
 
         for (let i = 0; i < pixels.length; i += 4) {
-<<<<<<< HEAD
-            if (pixels[i] >= threshold &&
-                pixels[i + 1] >= threshold &&
-                pixels[i + 2] >= threshold) {
-=======
             if (pixels[i] >= threshold && pixels[i + 1] >= threshold && pixels[i + 2] >= threshold) {
->>>>>>> 8e207cb659b08ae6c5b8c85ec638e603040291b6
                 pixels[i + 3] = 0;
             }
         }
@@ -160,33 +106,14 @@ class ScenePlay extends Phaser.Scene {
         this.score = 0;
         this.gameOver = false;
 
-<<<<<<< HEAD
-        this.bg = this.add.tileSprite(512, 384, 1024, 768, 'fg_loop_back');
-
-=======
         // BACKGROUND (Awan/Belakang)
         this.bg = this.add.tileSprite(512, 384, 1024, 768, 'fg_loop_back');
 
         // GROUND / TANAH (Menggunakan Physics Static Group agar bisa dipijak)
->>>>>>> 8e207cb659b08ae6c5b8c85ec638e603040291b6
         this.platforms = this.physics.add.staticGroup();
         this.land = this.add.tileSprite(512, 680, 1024, 200, 'fg_loop');
         this.platforms.add(this.land);
 
-<<<<<<< HEAD
-        this.removeWhiteBackground('chara', 'chara_no_bg', 240);
-
-        this.player = this.physics.add.sprite(200, 500, 'chara_no_bg');
-        this.player.setScale(0.5);
-        this.player.setCollideWorldBounds(true);
-        this.player.setGravityY(1200);
-
-        this.physics.add.collider(this.player, this.platforms);
-
-        this.obstacles = this.physics.add.group();
-
-        this.add.image(180, 40, 'panel_skor').setDepth(3);
-=======
         // Hapus latar putih dari sprite pocong, lalu gunakan tekstur baru
         this.removeWhiteBackground('chara', 'chara_no_bg', 240);
 
@@ -205,20 +132,14 @@ class ScenePlay extends Phaser.Scene {
 
         // SCORE PANEL + TEXT
         this.add.image(180, 40, 'panel_skor').setDepth(3).setScrollFactor(0);
->>>>>>> 8e207cb659b08ae6c5b8c85ec638e603040291b6
         this.scoreText = this.add.text(120, 28, 'Score : 0', {
             fontSize: '32px',
             fill: '#ffffff',
             stroke: '#000000',
             strokeThickness: 4
-<<<<<<< HEAD
-        }).setDepth(4);
-
-=======
         }).setDepth(4).setScrollFactor(0);
 
         // SPAWN OBSTACLES TIMER
->>>>>>> 8e207cb659b08ae6c5b8c85ec638e603040291b6
         this.time.addEvent({
             delay: 1800,
             callback: this.spawnObstacle,
@@ -226,13 +147,6 @@ class ScenePlay extends Phaser.Scene {
             loop: true
         });
 
-<<<<<<< HEAD
-        this.input.on('pointerdown', () => {
-            if (this.gameOver) return;
-
-            if (this.player.body.touching.down || this.player.y >= 540) {
-                this.player.setVelocityY(-550);
-=======
         // INPUT UNTUK LOMPAT (Hanya bisa melompat jika menyentuh tanah)
         this.input.on('pointerdown', () => {
             if (this.gameOver) return;
@@ -240,7 +154,6 @@ class ScenePlay extends Phaser.Scene {
             // Cek jika menyentuh tanah
             if (this.player.body.touching.down || this.player.y >= 540) {
                 this.player.setVelocityY(-550); // Kecepatan dorongan lompat ke atas
->>>>>>> 8e207cb659b08ae6c5b8c85ec638e603040291b6
                 this.sound.play('klik', { volume: 0.5 });
             }
         });
@@ -249,29 +162,16 @@ class ScenePlay extends Phaser.Scene {
     spawnObstacle() {
         if (this.gameOver) return;
 
-<<<<<<< HEAD
-        let obs = this.obstacles.create(1100, 550, 'obstc');
-        obs.setScale(0.5);
-        obs.body.setAllowGravity(false);
-        obs.setVelocityX(-380);
-=======
         // Spawn rintangan tepat di atas permukaan tanah
         let obs = this.obstacles.create(1100, 550, 'obstc');
         obs.setScale(0.5);
         obs.body.setAllowGravity(false); // Rintangan tidak dipengaruhi gravitasi jatuh
         obs.setVelocityX(-380); // Kecepatan rintangan bergerak ke kiri
->>>>>>> 8e207cb659b08ae6c5b8c85ec638e603040291b6
     }
 
     update() {
         if (this.gameOver) return;
 
-<<<<<<< HEAD
-        this.bg.tilePositionX += 1;
-        this.land.tilePositionX += 6;
-
-        this.obstacles.getChildren().forEach((obs) => {
-=======
         // Menggulung background & tanah jalan raya
         this.bg.tilePositionX += 1;
         this.land.tilePositionX += 6;
@@ -279,26 +179,12 @@ class ScenePlay extends Phaser.Scene {
         // Logika perulangan memeriksa rintangan luar layar & tabrakan
         this.obstacles.getChildren().forEach((obs) => {
             // Hapus jika lolos ke kiri layar
->>>>>>> 8e207cb659b08ae6c5b8c85ec638e603040291b6
             if (obs.x < -100) {
                 obs.destroy();
                 this.score++;
                 this.scoreText.setText('Score : ' + this.score);
             }
 
-<<<<<<< HEAD
-            if (Phaser.Math.Distance.Between(
-                this.player.x, this.player.y,
-                obs.x, obs.y
-            ) < 65) {
-                this.gameOver = true;
-
-                this.player.setVelocityY(0);
-                this.obstacles.setVelocityX(0);
-
-                this.sound.play('dead');
-
-=======
             // DETEKSI COLLISION JAUH LEBIH AKURAT
             if (Phaser.Math.Distance.Between(this.player.x, this.player.y, obs.x, obs.y) < 65) {
                 this.gameOver = true;
@@ -306,7 +192,6 @@ class ScenePlay extends Phaser.Scene {
                 this.obstacles.setVelocityX(0);
                 this.sound.play('dead');
                 
->>>>>>> 8e207cb659b08ae6c5b8c85ec638e603040291b6
                 this.scene.start('SceneGameOver', { score: this.score });
             }
         });
@@ -323,20 +208,13 @@ class SceneGameOver extends Phaser.Scene {
     }
 
     create() {
-<<<<<<< HEAD
-=======
         // Efek Overlay Hitam Transparan
->>>>>>> 8e207cb659b08ae6c5b8c85ec638e603040291b6
         this.add.rectangle(512, 384, 1024, 768, 0x000000, 0.7);
 
         this.add.text(512, 250, 'GAME OVER', {
             fontSize: '72px',
-<<<<<<< HEAD
-            fill: '#ff0000'
-=======
             fill: '#ff0000',
             fontWeight: 'bold'
->>>>>>> 8e207cb659b08ae6c5b8c85ec638e603040291b6
         }).setOrigin(0.5);
 
         this.add.text(512, 360, 'Score : ' + this.finalScore, {
@@ -344,10 +222,7 @@ class SceneGameOver extends Phaser.Scene {
             fill: '#ffffff'
         }).setOrigin(0.5);
 
-<<<<<<< HEAD
-=======
         // Tombol Main Lagi
->>>>>>> 8e207cb659b08ae6c5b8c85ec638e603040291b6
         let ulang = this.add.text(512, 500, 'MAIN LAGI', {
             fontSize: '40px',
             fill: '#ffffff',
@@ -357,23 +232,17 @@ class SceneGameOver extends Phaser.Scene {
         .setOrigin(0.5)
         .setInteractive();
 
-<<<<<<< HEAD
-=======
         // Efek Hover Tombol
         ulang.on('pointerover', () => ulang.setStyle({ fill: '#ffff00' }));
         ulang.on('pointerout', () => ulang.setStyle({ fill: '#ffffff' }));
 
->>>>>>> 8e207cb659b08ae6c5b8c85ec638e603040291b6
         ulang.on('pointerdown', () => {
             this.scene.start('ScenePlay');
         });
     }
 }
 
-<<<<<<< HEAD
-=======
 // CONFIG GAME (Menambahkan sistem Arcade Physics)
->>>>>>> 8e207cb659b08ae6c5b8c85ec638e603040291b6
 const config = {
     type: Phaser.AUTO,
     width: 1024,
@@ -383,27 +252,16 @@ const config = {
         autoCenter: Phaser.Scale.CENTER_BOTH
     },
     physics: {
-<<<<<<< HEAD
-        default: 'arcade',
-        arcade: {
-            gravity: { y: 0 },
-            debug: false
-=======
         default: 'arcade', // -> DIPERBAIKI: Mengaktifkan modul sistem fisika arcade
         arcade: {
             gravity: { y: 0 },
             debug: false 
->>>>>>> 8e207cb659b08ae6c5b8c85ec638e603040291b6
         }
     },
     scene: [SceneMenu, ScenePlay, SceneGameOver]
 };
 
-<<<<<<< HEAD
-new Phaser.Game(config);
-=======
 const game = new Phaser.Game(config);
->>>>>>> 8e207cb659b08ae6c5b8c85ec638e603040291b6
 </script>
 
 </body>
