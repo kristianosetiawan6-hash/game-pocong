@@ -42,11 +42,6 @@ class SceneMenu extends Phaser.Scene {
     }
 
     create() {
-        // Kotak hijau di bawah background utama
-        this.add.rectangle(512, 384, 200, 200, 0x00ff00)
-            .setAlpha(1)
-            .setDepth(0);
-
         this.add.image(512, 384, 'bg_start').setDepth(1);
         this.add.image(512, 170, 'title_game').setDepth(2);
 
